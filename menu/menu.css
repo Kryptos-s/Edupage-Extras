@@ -115,7 +115,14 @@ body {
     text-rendering: optimizeLegibility;
 }
 
+/* Fixed width on body — the popup panel sizes itself to the document, and
+   viewport-relative clamps (100vw etc.) must be avoided here: Firefox opens
+   the panel at a tiny initial viewport, so anything clamped to it locks the
+   popup at that squished width. On Firefox Android this renders as a normal
+   page instead, where margin:auto just centers the column. */
 body {
+    width: 324px;
+    margin: 0 auto;
     font-family: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
 }
 
@@ -123,10 +130,8 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
-    width: 324px;
-    max-width: 100vw;
+    width: 100%;
     min-height: 200px;
-    margin: 0 auto;
     padding: 16px;
     overflow: hidden;
 }
